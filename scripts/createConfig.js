@@ -6,8 +6,8 @@ module.exports = function(tip = new Tip()) {
   const isHaveDll = fs.existsSync(path.resolve(tip.paths.dll, 'dll.js'));
   return {
     target: 'web',
-    mode: tip.isDev ? 'development' : 'production',
-    devtool: tip.isDev ? 'source-map' : 'none',
+    mode: tip.isDev ? tip.mode.development : tip.mode.production,
+    devtool: tip.isDev ? tip.devtool.sourceMap : tip.devtool.none,
     stats: 'errors-only',
     entry: {
       main: tip.paths.entry,
@@ -41,11 +41,11 @@ module.exports = function(tip = new Tip()) {
       tip.isDev
         ? tip.plugins.FastUglifyJsPluginDev
         : tip.plugins.FastUglifyJsPluginProd,
-      isHaveDll ? tip.plugins.DllReferencePlugin : tip.plugins.null,
       !tip.isDev ? tip.plugins.HotModuleReplacementPlugin : tip.plugins.null,
       !tip.isDev ? tip.plugins.CleanWebpackPlugin : tip.plugins.null,
       !tip.isDev ? tip.plugins.CopyWebpackPlugin : tip.plugins.null,
       !tip.isDev ? tip.plugins.HashedModuleIdsPlugin : tip.plugins.null,
+      isHaveDll ? tip.plugins.DllReferencePlugin : tip.plugins.null,
     ],
     watchOptions: {
       ignored: /node_modules/,

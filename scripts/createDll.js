@@ -1,9 +1,14 @@
 const Tip = require('./Tip');
 
+let islog = false;
+
 module.exports = function(tip = new Tip()) {
   const package = require(tip.paths.package);
   const dllArray = package.dll || [];
-  console.log('packing dll: ', dllArray);
+  if (!islog) {
+    islog = true;
+    console.log('packing dll: ', dllArray);
+  }
   return {
     mode: tip.isDev ? 'development' : 'production',
     entry: {
@@ -24,12 +29,16 @@ module.exports = function(tip = new Tip()) {
     module: {
       strictExportPresence: true,
       rules: [
+        tip.module.rules.cssLoader,
+        tip.module.rules.stylusLoader,
+        tip.module.rules.urlLoader,
+        tip.module.rules.fileLoader,
+        tip.module.rules.sourceMapLoader,
         {
           test: /\.(js|jsx|mjs)$/,
           include: [
             /node_modules\/react-native-/,
             /node_modules\/react-native-web/,
-            /node_modules\/react-navigation/,
           ],
           loader: require.resolve('babel-loader'),
           options: {
@@ -37,6 +46,18 @@ module.exports = function(tip = new Tip()) {
             compact: true,
             cacheDirectory: false,
             presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              ['transform-class-properties', { spec: true }],
+              [
+                '@babel/plugin-transform-runtime',
+                {
+                  corejs: false,
+                  helpers: true,
+                  regenerator: true,
+                  useESModules: false,
+                },
+              ],
+            ],
           },
         },
       ],

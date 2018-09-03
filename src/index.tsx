@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 console.log('2222hello');
-var b = '3333world'
+var b = '3333world';
 
 interface IState {
   name: number;

@@ -12,11 +12,16 @@ class App extends React.Component {
     };
     this.testarrow.bind(this);
   }
-  testarrow() {
+  testarrow = () => {
     return 'arrow';
-  }
+  };
   render() {
-    return <div>hello with.js</div>;
+    return (
+      <div>
+        hello with.js
+        {this.testarrow()}
+      </div>
+    );
   }
 }
 
