@@ -1,7 +1,7 @@
 {
   "name": "with-webpack",
   "version": "1.0.6",
-  "main": "scripts/index.js",
+  "main": "config/index.js",
   "repository": "git@github.com:ymzuiku/with-webpack.git",
   "author": "pillar <pillar.liang@bindo.com>",
   "dll": [
@@ -11,9 +11,9 @@
     "react-native-web"
   ],
   "scripts": {
-    "web": "webpack-dev-server --config config/webpack.config.js",
-    "dll": "webpack --progress --config config/webpack.dll.js",
-    "build": "prod=1 webpack -config config/webpack.config.js"
+    "web": "webpack-dev-server --config scripts/webpack.config.js",
+    "dll": "webpack --progress --config scripts/webpack.dll.js",
+    "build": "prod=1 webpack -config scripts/webpack.config.js"
   },
   "license": "MIT",
   "devDependencies": {
