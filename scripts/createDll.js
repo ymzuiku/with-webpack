@@ -36,6 +36,7 @@ module.exports = function(tip = new Tip()) {
             babelrc: false,
             compact: true,
             cacheDirectory: false,
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       ],
