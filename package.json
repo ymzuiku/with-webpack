@@ -1,6 +1,6 @@
 {
   "name": "with-webpack",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "scripts/index.js",
   "repository": "git@github.com:ymzuiku/with-webpack.git",
   "author": "pillar <pillar.liang@bindo.com>",
@@ -33,7 +33,6 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
     "@babel/runtime": "^7.0.0",
-    "@babel/runtime-corejs2": "^7.0.0",
     "autoprefixer": "^9.0.0",
     "babel-loader": "8.0.0-beta.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
