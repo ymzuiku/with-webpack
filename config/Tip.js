@@ -31,7 +31,7 @@ class Tip {
       root: process.cwd(),
       output: path.resolve(process.cwd(), 'build'),
       public: path.resolve(process.cwd(), 'public'),
-      src: path.resolve(process.cwd(), 'src'),
+      // src: path.resolve(process.cwd(), 'src'),
       package: path.resolve(process.cwd(), 'package.json'),
       entry: path.resolve(process.cwd(), 'src/index.js'),
       dll: path.resolve(process.cwd(), 'public/dll'),
@@ -99,6 +99,12 @@ class Tip {
         // '/api-proxy': 'http://localhost:7000',
       },
     };
+    this.resolve = {
+      extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+      alias: {
+        'react-native': 'react-native-web',
+      },
+    };
     this.module = {
       rules: {
         tsLodaer: {
@@ -109,13 +115,9 @@ class Tip {
           // },
         },
         // .babelrc
-        babelLoader: {
+        babelLoaderBuild: {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          // include: [
-          //   /node_modules\/react-navigation/,
-          //   /node_modules\/react-native-/,
-          // ],
           use: {
             loader: 'babel-loader',
             options: {
@@ -124,7 +126,7 @@ class Tip {
               comments: isDev ? false : true,
               presets: ['@babel/preset-env', '@babel/preset-react'],
               plugins: [
-                ["transform-class-properties", { "spec": true }],
+                ['transform-class-properties', { spec: true }],
                 [
                   '@babel/plugin-transform-runtime',
                   {
@@ -132,6 +134,51 @@ class Tip {
                     helpers: true,
                     regenerator: true,
                     useESModules: false,
+                  },
+                ],
+                [
+                  'module-resolver',
+                  {
+                    alias: {
+                      '^react-native$': 'react-native-web',
+                    },
+                  },
+                ],
+              ],
+            },
+          },
+        },
+        babelLoaderDll: {
+          test: /\.js$/,
+          exclude: /(node_modules|bower_components)/,
+          include: [
+            /node_modules\/react-native-/,
+            /node_modules\/react-native-web/,
+          ],
+          use: {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+              babelrc: false,
+              comments: true,
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: [
+                ['transform-class-properties', { spec: true }],
+                [
+                  '@babel/plugin-transform-runtime',
+                  {
+                    corejs: false,
+                    helpers: true,
+                    regenerator: true,
+                    useESModules: false,
+                  },
+                ],
+                [
+                  'module-resolver',
+                  {
+                    alias: {
+                      '^react-native$': 'react-native-web',
+                    },
                   },
                 ],
               ],

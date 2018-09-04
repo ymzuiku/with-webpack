@@ -10,7 +10,7 @@ module.exports = function(tip = new Tip()) {
     console.log('packing dll: ', dllArray);
   }
   return {
-    mode: tip.isDev ? 'development' : 'production',
+    mode: tip.mode.production,
     entry: {
       dll: dllArray,
     },
@@ -20,10 +20,8 @@ module.exports = function(tip = new Tip()) {
       library: '[name]_library',
     },
     resolve: {
-      extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
-      alias: {
-        'react-native': 'react-native-web',
-      },
+      extensions: tip.resolve.extensions,
+      alias: tip.resolve.alias,
       plugins: [],
     },
     module: {
@@ -34,32 +32,7 @@ module.exports = function(tip = new Tip()) {
         tip.module.rules.urlLoader,
         tip.module.rules.fileLoader,
         tip.module.rules.sourceMapLoader,
-        {
-          test: /\.(js|jsx|mjs)$/,
-          include: [
-            /node_modules\/react-native-/,
-            /node_modules\/react-native-web/,
-          ],
-          loader: require.resolve('babel-loader'),
-          options: {
-            babelrc: false,
-            compact: true,
-            cacheDirectory: false,
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: [
-              ['transform-class-properties', { spec: true }],
-              [
-                '@babel/plugin-transform-runtime',
-                {
-                  corejs: false,
-                  helpers: true,
-                  regenerator: true,
-                  useESModules: false,
-                },
-              ],
-            ],
-          },
-        },
+        tip.module.rules.babelLoaderDll,
       ],
     },
     plugins: [tip.plugins.FastUglifyJsPluginProd, tip.plugins.DllPlugin],

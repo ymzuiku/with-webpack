@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import SubApp from './App';
-console.log('2222hello');
+console.log('2222hello-tsx');
 var b = '3333world';
 
 class App extends React.Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       name: 20,
@@ -13,7 +13,7 @@ class App extends React.Component {
     this.testarrow.bind(this);
   }
   testarrow = () => {
-    return 'arrow';
+    return 'arrowtsx';
   };
   render() {
     return (

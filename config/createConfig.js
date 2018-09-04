@@ -17,6 +17,11 @@ module.exports = function(tip = new Tip()) {
       chunkFilename: '[name].chunk.js',
       path: tip.paths.output,
     },
+    resolve: {
+      extensions:tip.resolve.extensions,
+      alias:tip.resolve.alias,
+      plugins: [],
+    },
     externals: {},
     module: {
       rules: [
@@ -26,21 +31,15 @@ module.exports = function(tip = new Tip()) {
         tip.module.rules.fileLoader,
         tip.module.rules.sourceMapLoader,
         tip.module.rules.tsLodaer,
-        tip.module.rules.babelLoader,
+        tip.module.rules.babelLoaderBuild,
       ],
-    },
-    resolve: {
-      extensions: ['.ts', '.tsx,', '.js', 'jsx', '.json'],
-      plugins: [],
     },
     devServer: tip.devServer,
     plugins: [
       tip.plugins.ProvidePlugin,
       tip.plugins.HtmlWebpackPlugin,
       tip.plugins.DefinePlugin,
-      tip.isDev
-        ? tip.plugins.FastUglifyJsPluginDev
-        : tip.plugins.FastUglifyJsPluginProd,
+      !tip.isDev ? tip.plugins.FastUglifyJsPluginProd : tip.plugins.null,
       !tip.isDev ? tip.plugins.HotModuleReplacementPlugin : tip.plugins.null,
       !tip.isDev ? tip.plugins.CleanWebpackPlugin : tip.plugins.null,
       !tip.isDev ? tip.plugins.CopyWebpackPlugin : tip.plugins.null,

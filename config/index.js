@@ -15,16 +15,16 @@ function deepMerge(a, b) {
   return a;
 }
 
-function createConfig(inputTip = new Tip(), nextConfig = createConfigFn()) {
+function createConfig(nextConfig = createConfigFn(), inputTip = new Tip()) {
   const tip = deepMerge(new Tip(), inputTip);
   console.log('create webpack config, isDev:', tip.isDev);
-  return deepMerge(createConfigFn(tip));
+  return deepMerge(createConfigFn(tip), nextConfig);
 }
 
-function createDll(inputTip = new Tip(), nextConfig = createDllFn()) {
+function createDll(nextConfig = createDllFn(), inputTip = new Tip()) {
   const tip = deepMerge(new Tip(), inputTip);
   console.log('create webpack dll, isDev:', tip.isDev);
-  return deepMerge(createDllFn(tip));
+  return deepMerge(createDllFn(tip), nextConfig);
 }
 
 module.exports = {
