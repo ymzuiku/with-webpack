@@ -1,7 +1,7 @@
 {
   "name": "with-webpack",
-  "version": "1.0.7",
-  "main": "lib/index.js",
+  "version": "1.0.9",
+  "main": "lib",
   "repository": "git@github.com:ymzuiku/with-webpack.git",
   "author": "pillar <pillar.liang@bindo.com>",
   "dll": [
