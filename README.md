@@ -24,7 +24,7 @@ scripts |
     --webpack.dll.js;
 ```
 
-**Edit code:**
+**Edit file:**
 
 scripts/webpack.config.js
 
@@ -88,7 +88,7 @@ public/index.html
 
 ### Add package.json
 
-```json
+```
 "dll": [
     "react",
     "react-dom",
@@ -122,6 +122,7 @@ Use typescript and react-native-web, you need install:
 
 ```sh
 $ yarn add --dev typescript react-native-typescript-transformer ts-jest @types/react @types/react-native @types/react-dom @types/jest @types/react-test-renderer
+$ yarn add with-webpack
 ```
 
 Copy default react-native-web-config
