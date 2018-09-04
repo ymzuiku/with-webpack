@@ -1,6 +1,6 @@
 {
   "name": "with-webpack",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "main": "lib",
   "repository": "git@github.com:ymzuiku/with-webpack.git",
   "author": "pillar <pillar.liang@bindo.com>",
