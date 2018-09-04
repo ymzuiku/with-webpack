@@ -1,14 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import SubApp from './App';
+import SubApp from './example/App';
 
-class App extends React.Component {
-  constructor(props: any) {
+class App extends React.Component{
+  constructor(props:any) {
     super(props);
     this.state = {
       name: 20,
     };
-    this.testarrow.bind(this);
   }
   testarrow = () => {
     return 'arrowtsx';
@@ -23,4 +22,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<SubApp />, document.getElementById('root'));

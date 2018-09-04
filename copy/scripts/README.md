@@ -13,11 +13,11 @@ $ npm i --save with-webpack
 **Make project tree like this:**
 
 ```js
-public \
+public |
   -- index.html
-src \
+src |
   -- index.js
-scripts \
+scripts |
   -- webpack.config.js
   -- webpack.dll.js
 ```
@@ -54,8 +54,8 @@ module.exports = createDll();
 
 run script
 ```sh
-npm run dll
-npm run web
+$ npm run dll
+$ npm run web
 ```
 
 ## Use typescript
@@ -63,3 +63,9 @@ npm run web
 with-webpack is have tsloader in webpack, and other your need read this document:
 
 [facebook.github.io/using-typescript-with-react-native](https://facebook.github.io/react-native/blog/2018/05/07/using-typescript-with-react-native.html)
+
+Use typescript and react-native-web, you need install:
+
+```sh
+$ yarn add --dev typescript react-native-typescript-transformer ts-jest @types/react @types/react-native @types/react-dom @types/jest @types/react-test-renderer
+```

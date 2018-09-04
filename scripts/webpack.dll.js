@@ -1,3 +1,3 @@
-const { createDll } = require('../config');
+const { createDll } = require('../lib');
 
 module.exports = createDll();

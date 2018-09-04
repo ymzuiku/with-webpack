@@ -1,5 +1,5 @@
 const { createDll } = require('with-webpack');
-const cd = require('path').resolve;
+const resolve = require('path').resolve;
 
 
 module.exports = createDll();
